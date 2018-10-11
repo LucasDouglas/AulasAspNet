@@ -18,5 +18,19 @@ namespace AulasAspNet.Data
         public string Email { get; set; }
 
         public string Nascimento { get; set; }
+
+        public string Logradouro { get; set; }
+
+        public string Localidade { get; set; }
+
+        public string uf { get; set; }
+
+        public string bairro { get; set; }
+
+        public string numero { get; set; }
+
+        public string complemento { get; set; }
+        
+
     }
 }

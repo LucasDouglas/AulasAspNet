@@ -10,34 +10,102 @@
     <div class="form-group">
         <label for="usuario.Nome">Nome</label><br />
         <input type="text" name="usuario.Nome" value="@Model.usuario.Nome" class="form-group" placeholder="Nome" /><br />
+
         <label for="usuario.Email">Email</label><br />
         <input type="email" name="usuario.Email" value="@Model.usuario.Email" class="form-group" placeholder="E-Mail" /> <br />
+
         <label for="usuario.CPF">CPF</label><br />
         <input type="text" name="usuario.CPF" value="@Model.usuario.CPF" class="form-group" placeholder="CPF" /> <br />
+
         <label for="usuario.Nascimento">Data de Nascimento</label><br />
         <input type="date" name="usuario.Nascimento" value="@Model.usuario.Nascimento" /><br />
+
         <label for="usuario.Senha">Senha</label> <br />
         <input type="password" id="senha" name="usuario.Senha" class="form-group" placeholder="Senha" /><br />
+
         <label>Confirmar Senha</label><br />
         <input type="password" id="confirmacao" class="form-group" placeholder="Confirmar Senha" /><br />
+
+        <label>CEP</label><br />
+        <input type="number" name="cep" id="cep" class="form.control" placeholder="CEP" />
+        <button class="btn btn-outline-info" type="button" onclick="buscaEndereco()">Buscar Cep</button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body" id="ender">
+
+
+                <hr />
+            </div>
+        </div>
+        <div class="collapse" id="collapseForm">
+            <label>Endereço</label>
+            <input type="text" name="usuario.Logradouro" id="logradouro" class="form-control" />
+            <label>Cidade</label>
+            <input type="text" name="usuario.Localidade" id="localidade" class="form-control" />
+            <label>Estado</label>
+            <input type="text" name="usuario.uf" id="uf" class="form-control" />
+            <label>Bairro</label>
+            <input type="text" name="usuario.bairro" id="bairro" class="form-control" />
+            <label>Número</label>
+            <input type="text" name="usuario.numero" id="numero" class="form-control" />
+            <label>Complemento</label>
+            <input type="text" name="usuario.complemento" id="complemento" class="form-control" />
+        </div>
         <br /> <br />
         <button class="btn btn-primary">Enviar</button>
     </div>
 </form>
+<button type="button" onclick="$('#meudiv').load('/teste.html')"></button>
 
 <script>
 
     function valida() {
         let senha = document.getElementById("Senha");
+        let cep = document.getElementById("cep");
         let confirmacao = document.getElementById("confirmacao");
         if (senha.value.length < 4) {
             alert("A senha deve ter pelo menos 4 caracteres");
             return false;
         }
+        if (cep.value.length < 8 || cep.value.length >8) {
+            alert("Somente ceps validos")
+            return false;
+        }
+        
+        
         if (senha.value == confirmacao.value) {
             alert("A senha e a confirmação devem ser iguais");
             return false;
         }
         return true;
+    }
+    
+
+    function buscaEndereco() {
+        let cep = document.querySelector("#cep");
+        $.getJSON("https://viacep.com.br/ws/" + cep.value + "/json" , function (resp) {
+                if (resp.erro) {
+                    //cep nao encontrado
+                    document.querySelector("#ender").innerHTML = "Cep não encontrado!";
+                    $('#collapseExample').collapse('show');
+                    $('#collapseForm').collapse('hide');
+                } else {
+                    //preenche os campos do endereço
+                    document.querySelector("#logradouro").value = resp.logradouro;
+                    $('#collapseExample').collapse('hide');
+                    $('#collapseForm').collapse('show');
+                    document.querySelector("#localidade").value = resp.localidade;
+                    $('#collapseExample').collapse('hide');
+                    $('#collapseForm').collapse('show');
+                    document.querySelector("#uf").value = resp.uf;
+                    $('#collapseExample').collapse('hide');
+                    $('#collapseForm').collapse('show');
+                    document.querySelector("#bairro").value = resp.bairro;
+                    $('#collapseExample').collapse('hide');
+                    $('#collapseForm').collapse('show');
+
+            }
+            
+
+            });
     }
 </script>
