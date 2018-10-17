@@ -10,6 +10,8 @@ namespace AulasAspNet.Pages.Usuarios
 {
     public class CadastrarModel : PageModel
     {
+        static List<Usuario> usuarios = new List<Usuario>();
+
         [BindProperty (SupportsGet = true)]
         public Usuario usuario { get; set; }
         public void OnGet()
@@ -22,5 +24,15 @@ namespace AulasAspNet.Pages.Usuarios
 
 
         }
+        [HttpPost]
+        public void OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                usuarios.Add(usuario);
+            }
+            
+        }
+
     }
 }
