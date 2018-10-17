@@ -1,6 +1,7 @@
 ﻿@page
 @model AulasAspNet.Pages.Usuarios.CadastrarModel
 @{
+
     ViewData["Title"] = "Cadastrar";
 }
 
@@ -8,17 +9,21 @@
 
 <form onsubmit="return valida()"> 
     <div class="form-group">
-        <label for="usuario.Nome">Nome</label><br />
-        <input type="text" name="usuario.Nome" value="@Model.usuario.Nome" class="form-group" placeholder="Nome" /><br />
+        <label asp-for="usuario.Nome">Nome</label> <br />
+        <input type ="text" asp-for="usuario.Nome" class="form-control" placeholder="Nome" />
+        <span asp-validation-for="usuario.Nome" class="text-danger"></span> <br />
 
-        <label for="usuario.Email">Email</label><br />
-        <input type="email" name="usuario.Email" value="@Model.usuario.Email" class="form-group" placeholder="E-Mail" /> <br />
+
+        <label asp-for="usuario.Email">Email</label> <br />
+        <input type="email" asp-for="usuario.Email" class="form-group" placeholder="E-Mail" /> <br />
+        <span asp-validation-for="usuario.Email" class="text-danger"></span> <br />
 
         <label for="usuario.CPF">CPF</label><br />
         <input type="text" name="usuario.CPF" value="@Model.usuario.CPF" class="form-group" placeholder="CPF" /> <br />
 
-        <label for="usuario.Nascimento">Data de Nascimento</label><br />
-        <input type="date" name="usuario.Nascimento" value="@Model.usuario.Nascimento" /><br />
+        <label asp-for="usuario.Nascimento">Data de Nascimento</label> <br />
+        <input type="date" asp-for="usuario.Nascimento" class="form-group" /><br />
+        <span asp-validation-for="usuario.Nascimento" class="text-danger"></span><br />
 
         <label for="usuario.Senha">Senha</label> <br />
         <input type="password" id="senha" name="usuario.Senha" class="form-group" placeholder="Senha" /><br />
@@ -26,8 +31,9 @@
         <label>Confirmar Senha</label><br />
         <input type="password" id="confirmacao" class="form-group" placeholder="Confirmar Senha" /><br />
 
-        <label>CEP</label><br />
-        <input type="number" name="cep" id="cep" class="form.control" placeholder="CEP" />
+        <label asp-for="usuario.Cep" >CEP</label> <br />
+        <input type="text" asp-for="usuario.Cep" id="Cep" class="form.control" placeholder="CEP" /><br />
+        <span asp-validation-for="usuario.Cep" class="text-danger"></span><br />
         <button class="btn btn-outline-info" type="button" onclick="buscaEndereco()">Buscar Cep</button>
         <div class="collapse" id="collapseExample">
             <div class="card card-body" id="ender">
@@ -58,18 +64,18 @@
 
 <script>
 
+
+
+
     function valida() {
-        let senha = document.getElementById("Senha");
-        let cep = document.getElementById("cep");
+        let senha = document.getElementById("senha");
         let confirmacao = document.getElementById("confirmacao");
         if (senha.value.length < 4) {
             alert("A senha deve ter pelo menos 4 caracteres");
             return false;
         }
 
-
-        
-        if (senha.value == confirmacao.value) {
+        if (senha.value != confirmacao.value) {
             alert("A senha e a confirmação devem ser iguais");
             return false;
         }
@@ -78,7 +84,7 @@
     
 
     function buscaEndereco() {
-        let cep = document.querySelector("#cep");
+        let cep = document.querySelector("#Cep");
         $.getJSON("https://viacep.com.br/ws/" + cep.value + "/json" , function (resp) {
                 if (resp.erro) {
                     //cep nao encontrado
