@@ -10,7 +10,7 @@ namespace AulasAspNet.Pages.Usuarios
 {
     public class CadastrarModel : PageModel
     {
-        static List<Usuario> usuarios = new List<Usuario>();
+        public static List<Usuario> usuarios = new List<Usuario>();
 
         [BindProperty (SupportsGet = true)]
         public Usuario usuario { get; set; }

@@ -1,0 +1,27 @@
+﻿@page
+@model AulasAspNet.Pages.Usuarios.ConsultarModel
+@{
+    ViewData["Title"] = "Consultar";
+}
+
+
+
+<h2>Consultar</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label class="form-control">CPF</label>
+        <input type="text" name="Cpf" />
+    </div>
+    <button class="btn-dark">Buscar</button>
+
+</form>
+
+@if (ViewData["usuario"] != null)
+{
+    <div class="card">
+        <div class="card-body">
+            @((AulasAspNet.Data.Usuario)ViewData["usuario"]).Nome)
+        </div>
+    </div>
+}
