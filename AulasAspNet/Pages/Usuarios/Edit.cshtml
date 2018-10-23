@@ -1,0 +1,90 @@
+﻿@page
+@model AulasAspNet.Pages.Usuarios.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Usuario.UsuarioId" />
+            <div class="form-group">
+                <label asp-for="Usuario.Nome" class="control-label"></label>
+                <input asp-for="Usuario.Nome" class="form-control" />
+                <span asp-validation-for="Usuario.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.Senha" class="control-label"></label>
+                <input asp-for="Usuario.Senha" class="form-control" />
+                <span asp-validation-for="Usuario.Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.CPF" class="control-label"></label>
+                <input asp-for="Usuario.CPF" class="form-control" />
+                <span asp-validation-for="Usuario.CPF" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.Email" class="control-label"></label>
+                <input asp-for="Usuario.Email" class="form-control" />
+                <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.Nascimento" class="control-label"></label>
+                <input asp-for="Usuario.Nascimento" class="form-control" />
+                <span asp-validation-for="Usuario.Nascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.Cep" class="control-label"></label>
+                <input asp-for="Usuario.Cep" class="form-control" />
+                <span asp-validation-for="Usuario.Cep" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.Logradouro" class="control-label"></label>
+                <input asp-for="Usuario.Logradouro" class="form-control" />
+                <span asp-validation-for="Usuario.Logradouro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.Localidade" class="control-label"></label>
+                <input asp-for="Usuario.Localidade" class="form-control" />
+                <span asp-validation-for="Usuario.Localidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.uf" class="control-label"></label>
+                <input asp-for="Usuario.uf" class="form-control" />
+                <span asp-validation-for="Usuario.uf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.bairro" class="control-label"></label>
+                <input asp-for="Usuario.bairro" class="form-control" />
+                <span asp-validation-for="Usuario.bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.numero" class="control-label"></label>
+                <input asp-for="Usuario.numero" class="form-control" />
+                <span asp-validation-for="Usuario.numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.complemento" class="control-label"></label>
+                <input asp-for="Usuario.complemento" class="form-control" />
+                <span asp-validation-for="Usuario.complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
