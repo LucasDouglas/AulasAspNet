@@ -37,6 +37,7 @@ namespace AulasAspNet.Pages.Usuarios
             {
                 _context.Usuario.Add(usuario);
                 _context.SaveChanges();
+                RedirectToPage("./Index");
             }
             
         }

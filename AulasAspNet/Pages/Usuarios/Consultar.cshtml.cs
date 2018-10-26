@@ -13,7 +13,7 @@ namespace AulasAspNet.Pages.Usuarios
     {
         AulasAspNetContext  _context;
 
-        public class ConsultarModel(AulasAspNetContext context)
+        public  ConsultarModel(AulasAspNetContext context)
         {
             _context = context;
         }
@@ -25,18 +25,14 @@ namespace AulasAspNet.Pages.Usuarios
         [HttpPost]
         public void OnPost(string CPF)
         {
-            List<Usuario> usuarios = CadastrarModel.usuarios;
+        Usuario u = _context.Usuario.Where(u1 => u1.CPF == CPF).FirstOrDefault();
 
-            foreach(Usuario u in usuarios)
-            {
-                if (CPF.Equals(u.CPF))
-                {
-                    ViewData["usuario"] = u;
-                }
-                
-                
-            }
+        if (u != null)
+        {
+            ViewData["usuario"] = u;
+        }
+
+    }
 
         }
     }
-}

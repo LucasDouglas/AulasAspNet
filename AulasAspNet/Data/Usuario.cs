@@ -23,7 +23,6 @@ namespace AulasAspNet.Data
         [Required(ErrorMessage = "Data de nascimento é obrigatório")]
         public string Nascimento { get; set; }
 
-        [RegularExpression(@"\d\d\d\d\d-\d\d\d", ErrorMessage = "O Cep deve conter somente oito digitos válidos")]
         public string Cep { get; set; }
 
         public string Logradouro { get; set; }
