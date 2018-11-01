@@ -49,9 +49,10 @@ namespace AulasAspNet
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
 
-            app.UseMvc();
+
+            app.UseMvc(routes => routes.MapRoute("default", "{controller=home}/{action=Index}/{id}"));
+        
         }
     }
 }
